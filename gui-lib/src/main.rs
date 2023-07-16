@@ -1,6 +1,3 @@
-// TODO: remove this when you're done with your implementation.
-#![allow(unused_imports, unused_variables, dead_code)]
-
 pub trait Widget {
     /// Natural width of `self`.
     fn width(&self) -> usize;
@@ -67,33 +64,60 @@ impl Window {
     }
 }
 
-impl Widget for Label {
+impl Widget for Window {
     fn width(&self) -> usize {
-        unimplemented!()
+        // Add 4 paddings for borders
+        self.inner_width() + 4
     }
 
     fn draw_into(&self, buffer: &mut dyn std::fmt::Write) {
-        unimplemented!()
+        let mut inner = String::new();
+        for widget in &self.widgets {
+            widget.draw_into(&mut inner);
+        }
+
+        let inner_width = self.inner_width();
+
+        // TODO: use proper error handling with Result<(), std::fmt::Error> instead of .unwrap().
+        writeln!(buffer, "+-{:-<inner_width$}-+", "").unwrap();
+        writeln!(buffer, "| {:^inner_width$} |", &self.title).unwrap();
+        writeln!(buffer, "+={:=<inner_width$}=+", "").unwrap();
+        for line in inner.lines() {
+            writeln!(buffer, "| {:inner_width$} |", line).unwrap();
+        }
+        writeln!(buffer, "+-{:-<inner_width$}-+", "").unwrap();
     }
 }
 
 impl Widget for Button {
     fn width(&self) -> usize {
-        unimplemented!()
+        self.label.width() + 8 // add a bit of padding
     }
 
     fn draw_into(&self, buffer: &mut dyn std::fmt::Write) {
-        unimplemented!()
+        let width = self.width();
+        let mut label = String::new();
+        self.label.draw_into(&mut label);
+
+        writeln!(buffer, "+{:-<width$}+", "").unwrap();
+        for line in label.lines() {
+            writeln!(buffer, "|{:^width$}|", &line).unwrap();
+        }
+        writeln!(buffer, "+{:-<width$}+", "").unwrap();
     }
 }
 
-impl Widget for Window {
+impl Widget for Label {
     fn width(&self) -> usize {
-        unimplemented!()
+        self.label
+            .lines()
+            .map(|line| line.chars().count())
+            .max()
+            .unwrap_or(0)
     }
 
     fn draw_into(&self, buffer: &mut dyn std::fmt::Write) {
-        unimplemented!()
+        writeln!(buffer, "{}", &self.label).unwrap();
     }
 }
 
