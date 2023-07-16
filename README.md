@@ -25,3 +25,7 @@ The Luhn algorithm is used to validate credit card numbers. The algorithm takes 
 - Sum all the undoubled and doubled digits.
 
 - The credit card number is valid if the sum ends with 0.
+
+## GUI lib
+
+An attempt to play with traits and trait objects by implementing a not so real gui library!
