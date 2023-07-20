@@ -32,4 +32,5 @@ An attempt to play with traits and trait objects by implementing a not so real g
 
 ## MyVec
 
-An attempt to implement Vec from scratch.
+An attempt to implement Vec from scratch using unsafe.
+It contains at this moment only the implementation of the "push" method.
