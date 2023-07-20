@@ -34,3 +34,7 @@ An attempt to play with traits and trait objects by implementing a not so real g
 
 An attempt to implement Vec from scratch using unsafe.
 It contains at this moment only the implementation of the "push" method.
+
+## SHA1 Cracker
+
+Simple SHA1 cracker based on a simple word list. No GPU calculations, just the basics.
