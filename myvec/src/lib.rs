@@ -92,5 +92,9 @@ mod tests {
         vec.push(3);
         assert_eq!(vec.capacity(), 4);
         assert_eq!(vec.len(), 3);
+        vec.push(4);
+        vec.push(5);
+        assert_eq!(vec.capacity(), 8);
+        assert_eq!(vec.len(), 5);
     }
 }
