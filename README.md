@@ -38,3 +38,7 @@ It contains at this moment only the implementation of the "push" method.
 ## SHA1 Cracker
 
 Simple SHA1 cracker based on a simple word list. No GPU calculations, just the basics.
+
+## Pscanner
+
+Simple port scanner looking for subdomains and open ports.
